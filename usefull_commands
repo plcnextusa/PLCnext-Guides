@@ -1,0 +1,5 @@
+
+##grants root access##
+'''bash
+usermod -aG sudo username
+'''
