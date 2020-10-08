@@ -1,5 +1,9 @@
 
-##grants root access##
+##grants root access to an user##
 '''bash
 usermod -aG sudo username
 '''
+
+gives SSH rights to root
+
+nano /etc/ssh/sshd_config   (remove comment # from the line which says permit root login yes)
