@@ -1,0 +1,9 @@
+
+Grant root access to an user:
+  usermod -aG sudo username
+
+Give SSH rights to root:
+  nano /etc/ssh/sshd_config   (remove comment # from the line which says permit root login yes)
+
+Clear log file from Docker Container:
+  echo "" > $(docker inspect --format='{{.LogPath}}' <container_name_or_id>)
