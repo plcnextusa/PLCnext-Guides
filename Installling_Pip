@@ -1,0 +1,6 @@
+# Type the below commands to install pip on a PLCnext controller. 
+
+# NOTE YOU MUST HAVE AN INTERNET CONNECTION!
+
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3 get-pip.py
