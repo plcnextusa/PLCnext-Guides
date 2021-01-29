@@ -1,0 +1,4 @@
+
+
+wget -O - http://ipkg.nslu2-linux.org/optware-ng/bootstrap/buildroot-armeabihf-bootstrap.sh | sh
+export PATH=$PATH:/opt/bin:/opt/sbin
