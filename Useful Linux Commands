@@ -10,3 +10,6 @@ Clear log file from Docker Container:
 
 Return Firmware version of the PLCnext Controller via CLI
   grep Arpversion /etc/plcnext/arpversion
+  
+Return the controller type (1152,2152,3152, etc.)
+cat /etc/device_data/phoenixsign/production_data | grep 'DEVNAME=' | awk -F '\"' '{print $2}' | sed 's/\"//g'
