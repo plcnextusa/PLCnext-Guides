@@ -10,8 +10,12 @@
 
 ##Return Firmware version of the PLCnext Controller via CLI##
   grep Arpversion /etc/plcnext/arpversion
-  
-  
-  ##Shows the product name from terminal##
-  
+    
+##Shows the product name from terminal##
   cat /etc/device_data/phoenixsign/production_data | grep 'DEVNAME=' | awk -F '\"' '{print $2}' | sed 's/\"//g'
+
+##Shows the mac address from the terminal##
+  cat /sys/class/net/eth0/address
+  
+##Shows the IP address from the terminal##
+  ifconfig eth0 | awk '/inet addr/ {gsub("addr:", "", $2); print $2}'
