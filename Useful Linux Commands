@@ -19,3 +19,19 @@
   
 ##Shows the IP address from the terminal##
   ifconfig eth0 | awk '/inet addr/ {gsub("addr:", "", $2); print $2}'
+
+##Tells the current state of the SD card
+./usr/sbin/sdcard_state.sh getStatus
+
+##Get the device the PLC boots off of (internal or external SD card)
+./usr/sbin/sdcard_state.sh getBootDevice
+
+##Disable the SD card slot
+./usr/sbin/sdcard_state.sh request_deactivation
+
+Then reboot the PLC for the change to go into effect.
+
+##Enable the SD card slot
+./usr/sbin/sdcard_state.sh request_activation
+
+Then reboot the PLC for the change to go into effect.
