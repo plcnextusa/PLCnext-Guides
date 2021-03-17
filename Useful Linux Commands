@@ -38,3 +38,9 @@ Then reboot the PLC for the change to go into effect.
 
 ## Set the date and time to current
 date -s "$(curl -s --head http://google.com | grep ^Date: | sed 's/Date: //g')"
+
+## Get the memory usage of the PLCnext (%)
+free -m | awk 'NR==2{printf "%.2f\n",$3*100/$2 }’
+
+## Get the CPU usage of the PLCnext (%)
+top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1}'
