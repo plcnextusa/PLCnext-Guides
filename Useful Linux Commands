@@ -35,3 +35,6 @@ Then reboot the PLC for the change to go into effect.
 ./usr/sbin/sdcard_state.sh request_activation
 
 Then reboot the PLC for the change to go into effect.
+
+## Set the date and time to current
+date -s "$(curl -s --head http://google.com | grep ^Date: | sed 's/Date: //g')"
