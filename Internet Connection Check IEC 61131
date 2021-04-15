@@ -1,0 +1,49 @@
+(*Triggers*)
+R_TRIG1(CLK := TON1.Q);
+R_TRIG2(CLK := TRUE);
+
+CASE i OF 
+    0:  (*On 1 minute trigger, test connection*)
+        If R_TRIG1.Q OR R_TRIG2.Q THEN
+            xTestInternetConnection := TRUE;
+            i := 1;
+        END_IF;
+    1:  (*Waiting 5 seconds for the TCP socket to connect*)
+        If TON3.Q THEN
+            (*If the connection is valid*)
+            If xActive AND NOT xErrorTCP THEN
+                xConnectedToInternet := TRUE;
+                i := 2;
+            (*If the connection is not valid*)
+            ELSE
+                xConnectedToInternet := FALSE;
+                i := 3;
+            END_IF;
+        END_IF;
+    2:  (*Clearing TCP connection, reset for next test*)
+        xTestInternetConnection := FALSE;
+        i := 0;
+    3:  (*Wait for connection to re-establish*)
+        If NOT xBusy AND xActive THEN
+            xConnectedToInternet := TRUE;
+            xTestInternetConnection := FALSE;
+            i := 0;
+        END_IF;  
+END_CASE
+
+(*TCP Socket setup that pings Mosquitto's public MQTT broker to test internet connection*)
+TCP_SOCKET1(ACTIVATE := xTestInternetConnection, 
+    IS_SRV := FALSE, 
+    DEST_IP := '5.196.95.208', 
+    DEST_PORT := 1883,  
+    ACTIVE => xActive, 
+    BUSY => xBusy, 
+    ERROR => xErrorTCP, 
+    STATUS => wStatus, 
+    USED_PORT => uiPort);
+    
+(*Flip Flop to check internet once a minute*)
+TON1(IN := NOT TON2.Q AND i<>3, PT := T#30s);
+TON2(IN := TON1.Q AND i<>3, PT := T#30s);
+(*Timer to wait for TCP socket to connect. Needed to prevent mishandled disconnects.*)
+TON3(IN := i=1, PT := T#5s);
