@@ -48,3 +48,6 @@ top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100
 ## Restart the PLCnext Runtime
 (root user) /etc/init.d/plcnext restart
 (admin user) sudo /etc/init.d/plcnext restart
+
+## Get the PLC's UUID
+cat /etc/device_data/phoenixsign/cloud_uuid
