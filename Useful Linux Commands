@@ -1,23 +1,23 @@
 
-##Grant root access to an user:##
+##Grant root access to an user:
   usermod -aG sudo username
 
-##Give SSH rights to root:##
+##Give SSH rights to root:
   nano /etc/ssh/sshd_config   (remove comment # from the line which says permit root login yes)
 
-##Clear log file from Docker Container:##
+##Clear log file from Docker Container:
   echo "" > $(docker inspect --format='{{.LogPath}}' <container_name_or_id>)
 
-##Return Firmware version of the PLCnext Controller via CLI##
+##Return Firmware version of the PLCnext Controller via CLI
   grep Arpversion /etc/plcnext/arpversion
     
-##Shows the product name from terminal##
+##Shows the product name from terminal
   cat /etc/device_data/phoenixsign/production_data | grep 'DEVNAME=' | awk -F '\"' '{print $2}' | sed 's/\"//g'
 
-##Shows the mac address from the terminal##
+##Shows the mac address from the terminal
   cat /sys/class/net/eth0/address
   
-##Shows the IP address from the terminal##
+##Shows the IP address from the terminal
   ifconfig eth0 | awk '/inet addr/ {gsub("addr:", "", $2); print $2}'
 
 ##Tells the current state of the SD card
@@ -51,3 +51,6 @@ top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100
 
 ## Get the PLC's UUID
 cat /etc/device_data/phoenixsign/cloud_uuid
+
+##Shows the product information in the terminal. Serial number, and all data on the hardware.
+cat /etc/device_data/phoenixsign/production_data
