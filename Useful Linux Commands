@@ -54,3 +54,13 @@ cat /etc/device_data/phoenixsign/cloud_uuid
 
 ##Shows the product information in the terminal. Serial number, and all data on the hardware.
 cat /etc/device_data/phoenixsign/production_data
+
+## Change the timezone of the PLCnext to local time zone
+
+  # Viewing available timezones:
+  cd /usr/share/zoneinfo
+  ls
+
+  # Re-Link the correct timezone:
+  sudo unlink /etc/localtime 
+  sudo ln -s /usr/share/zoneinfo/[ZONE NAME HERE] /etc/localtime
