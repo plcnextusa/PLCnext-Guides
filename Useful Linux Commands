@@ -63,3 +63,8 @@ cat /etc/device_data/phoenixsign/production_data
   # Re-Link the correct timezone:
   sudo unlink /etc/localtime 
   sudo ln -s /usr/share/zoneinfo/[ZONE NAME HERE] /etc/localtime
+
+## Restart networking on PLC
+  change the interfaces file /etc/network/interfaces
+  cd /etc/init.d/
+  ./networking restart
