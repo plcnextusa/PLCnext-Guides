@@ -68,3 +68,9 @@ cat /etc/device_data/phoenixsign/production_data
   change the interfaces file /etc/network/interfaces
   cd /etc/init.d/
   ./networking restart
+  
+## Read real time humidity value (0.001%)
+cat /sys/class/hwmon/hwmon0/humidity1_input
+
+## Read real time board temp value (0.001 deg C)
+cat /sys/class/hwmon/hwmon0/temperature1_input
