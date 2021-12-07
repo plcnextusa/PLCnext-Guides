@@ -5,8 +5,8 @@
 ##Give SSH rights to root:
   nano /etc/ssh/sshd_config   (remove comment # from the line which says permit root login yes)
 
-##Clear log file from Docker Container:
-  echo "" > $(docker inspect --format='{{.LogPath}}' <container_name_or_id>)
+##Clear log file from Balena Engine Container:
+  echo "" > $(balena-engine inspect --format='{{.LogPath}}' <container_name_or_id>)
 
 ##Return Firmware version of the PLCnext Controller via CLI
   grep Arpversion /etc/plcnext/arpversion
