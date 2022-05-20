@@ -2,5 +2,7 @@
 
 # NOTE YOU MUST HAVE AN INTERNET CONNECTION!
 
+# NOTE YOU MUST EXECUTE AS ROOT USER!
+
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python3 get-pip.py
