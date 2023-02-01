@@ -75,5 +75,4 @@ cat /sys/class/hwmon/hwmon0/humidity1_input
 cat /sys/class/hwmon/hwmon0/temperature1_input
 
 ## Pull default password of the PLC
-source /etc/device_data/phoenixsign/production_data
-echo $DEFAULT_PASSWORD
+cat /etc/device_data/phoenixsign/production_data | grep 'DEFAULT_PASSWORD=' | awk -F '\"' '{print $2}' | sed 's/\"//g'
