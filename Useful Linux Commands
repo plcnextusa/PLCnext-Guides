@@ -82,3 +82,7 @@ cat /etc/device_data/phoenixsign/production_data | grep 'OEM_SERIAL=' | awk -F '
 
 ## Pull part number of the PLC
 cat /etc/device_data/phoenixsign/production_data | grep 'PXC_PROD_CODE=' | awk -F '\"' '{print $2}' | sed 's/\"//g'
+
+## Get program name of PLC
+cat /opt/plcnext/projects/PCWE/Plc/Domain/pcwe.plc.config
+
